@@ -52,6 +52,7 @@ export default {
         });
         this.$router.push('/main');
       } catch (error) {
+        console.log(error);
         this.logMessage = error;
       }
     },
@@ -65,7 +66,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .form-wrapper .form {
   width: 100%;
 }
