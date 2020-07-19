@@ -9,9 +9,6 @@ module.exports = {
 		'prettier',
 		'plugin:prettier/recommended',
 	],
-	parserOptions: {
-		parser: 'babel-eslint',
-	},
 	plugins: ['prettier'],
 	rules: {
 		'prettier/prettier': [
@@ -19,7 +16,7 @@ module.exports = {
 			{
 				singleQuote: true,
 				semi: true,
-				useTabs: true,
+				useTabs: false,
 				tabWidth: 2,
 				trailingComma: 'all',
 				printWidth: 80,
@@ -28,6 +25,9 @@ module.exports = {
 			},
 		],
 		'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+	},
+	parserOptions: {
+		parser: "babel-eslint"
 	},
 	overrides: [
 		{

@@ -1,56 +1,60 @@
 <template>
-	<v-app>
-		<v-app-bar app color="primary" dark>
-			<div class="d-flex align-center">
-				<v-img
-					alt="Vuetify Logo"
-					class="shrink mr-2"
-					contain
-					src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-					transition="scale-transition"
-					width="40"
-				/>
+  <v-app>
+    <v-app-bar app color="primary" dark>
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <Title :title="title"></Title>
+      <v-spacer></v-spacer>
+      <v-btn icon @click="save">
+        <v-icon>mdi-check</v-icon>
+      </v-btn>
+    </v-app-bar>
 
-				<v-img
-					alt="Vuetify Name"
-					class="shrink mt-1 hidden-sm-and-down"
-					contain
-					min-width="100"
-					src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-					width="100"
-				/>
-			</div>
+    <NavBar></NavBar>
 
-			<v-spacer></v-spacer>
-
-			<v-btn
-				href="https://github.com/vuetifyjs/vuetify/releases/latest"
-				target="_blank"
-				text
-			>
-				<span class="mr-2">Latest Release</span>
-				<v-icon>mdi-open-in-new</v-icon>
-			</v-btn>
-		</v-app-bar>
-
-		<v-content>
-			<HelloWorld />
-		</v-content>
-	</v-app>
+    <v-content>
+      <router-view></router-view>
+    </v-content>
+    <Footer :footer="footer"></Footer>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+import Title from '@/components/common/Title.vue';
+import NavBar from '@/components/nav/NavBar.vue';
+import Footer from '@/components/common/Footer.vue';
 
 export default {
-	name: 'App',
-
-	components: {
-		HelloWorld,
-	},
-
-	data: () => ({
-		//
-	}),
+  components: {
+    Title,
+    NavBar,
+    Footer,
+  },
+  data() {
+    return {
+      title: '나의 타이틀입니다.',
+      footer: '푸터입니다.',
+      drawer: false,
+      items: [
+        { title: 'Dashboard', icon: 'mdi-view-dashboard' },
+        { title: 'Photos', icon: 'mdi-image' },
+        { title: 'About', icon: 'mdi-help-box' },
+      ],
+      right: null,
+    };
+  },
+  methods: {
+    save() {
+      this.$firebase
+        .database()
+        .ref()
+        .child('abcd')
+        .set({
+          title: 'abcd',
+          text: 'ttttt',
+        });
+    },
+  },
 };
 </script>
+
+<style></style>
