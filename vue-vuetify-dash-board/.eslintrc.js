@@ -19,7 +19,7 @@ module.exports = {
 				useTabs: false,
 				tabWidth: 2,
 				trailingComma: 'all',
-				printWidth: 80,
+				printWidth: 120,
 				bracketSpacing: true,
 				arrowParens: 'avoid',
 			},
