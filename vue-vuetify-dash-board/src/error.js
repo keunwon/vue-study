@@ -1,7 +1,7 @@
-// import Vue from 'vue';
+import Vue from 'vue';
 
-// Vue.config.errorHandler = e => {
-//   console.log('error');
-//   alert(e.message);
-//   return;
-// };
+Vue.config.errorHandler = e => {
+  console.log('error');
+  console.log(e);
+  return;
+};

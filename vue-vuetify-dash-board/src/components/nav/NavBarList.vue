@@ -29,6 +29,16 @@
                 <v-btn icon @click="openDialogItem(i)">
                   <v-icon>mdi-pencil</v-icon>
                 </v-btn>
+                <v-btn icon @click="openDialogSubItem(i, j)">
+                  <v-icon>mdi-pencil</v-icon>
+                </v-btn>
+                <v-btn icon @click="moveItem(items, i, -1)" v-if="i > 0">
+                  <v-icon>mdi-chevron-double-up</v-icon>
+                </v-btn>
+                <v-btn icon @click="moveItem(items, i, 1)" v-if="i < items.length - 1">
+                  <v-icon>mdi-chevron-double-down</v-icon>
+                  <v-icon></v-icon>
+                </v-btn>
               </span>
             </v-list-item-title>
           </v-list-item-content>
@@ -42,6 +52,13 @@
                 <v-btn icon @click="openDialogSubItem(i, j)">
                   <v-icon>mdi-pencil</v-icon>
                 </v-btn>
+                <v-btn icon @click="moveItem(item.subItems, j, -1)" v-if="j > 0">
+                  <v-icon>mdi-chevron-double-up</v-icon>
+                </v-btn>
+                <v-btn icon @click="moveItem(item.subItems, j, 1)" v-if="j < item.subItems.length - 1">
+                  <v-icon>mdi-chevron-double-down</v-icon>
+                  <v-icon></v-icon>
+                </v-btn>
               </span>
             </v-list-item-title>
           </v-list-item-content>
@@ -51,6 +68,7 @@
             </v-btn>
           </v-list-item-action>
         </v-list-item>
+
         <v-list-item @click="openDialogSubItem(i, -1)" v-if="$store.state.editable">
           <v-list-item-icon :class="$store.state.editable ? 'pl-4' : ''">
             <v-icon>mdi-plus</v-icon>
@@ -138,6 +156,11 @@ export default {
     };
   },
   methods: {
+    moveItem(items, i, arrow) {
+      const item = items.splice(i, 1)[0];
+      items.splice(i + arrow, 0, item);
+      this.save();
+    },
     openDialogItem(index) {
       this.selectedItemIndex = index;
       if (index < 0) {

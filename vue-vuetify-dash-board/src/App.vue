@@ -4,6 +4,7 @@
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <Title :title="site.title"></Title>
       <v-spacer></v-spacer>
+      <Sign></Sign>
       <v-btn icon @click="save">
         <v-icon>mdi-check</v-icon>
       </v-btn>
@@ -20,12 +21,14 @@
 import Title from '@/components/common/Title.vue';
 import NavBar from '@/components/nav/NavBar.vue';
 import Footer from '@/components/common/Footer.vue';
+import Sign from '@/components/auth/Sign.vue';
 
 export default {
   components: {
     Title,
     NavBar,
     Footer,
+    Sign,
   },
   data() {
     return {
