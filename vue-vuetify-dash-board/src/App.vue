@@ -10,9 +10,11 @@
       </v-btn>
     </v-app-bar>
     <NavBar :items="site.menu"></NavBar>
-    <!-- <v-content>
+
+    <v-content>
       <router-view></router-view>
-    </v-content> -->
+    </v-content>
+
     <Footer :footer="site.footer"></Footer>
   </v-app>
 </template>

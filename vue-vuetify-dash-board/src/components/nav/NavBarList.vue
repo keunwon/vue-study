@@ -37,7 +37,9 @@
                 </v-btn>
                 <v-btn icon @click="moveItem(items, i, 1)" v-if="i < items.length - 1">
                   <v-icon>mdi-chevron-double-down</v-icon>
-                  <v-icon></v-icon>
+                </v-btn>
+                <v-btn icon @click="removeItem(items, i)">
+                  <v-icon>mdi-delete</v-icon>
                 </v-btn>
               </span>
             </v-list-item-title>
@@ -57,7 +59,9 @@
                 </v-btn>
                 <v-btn icon @click="moveItem(item.subItems, j, 1)" v-if="j < item.subItems.length - 1">
                   <v-icon>mdi-chevron-double-down</v-icon>
-                  <v-icon></v-icon>
+                </v-btn>
+                <v-btn icon @click="removeItem(item.subItems, j)">
+                  <v-icon>mdi-delete</v-icon>
                 </v-btn>
               </span>
             </v-list-item-title>
@@ -156,11 +160,6 @@ export default {
     };
   },
   methods: {
-    moveItem(items, i, arrow) {
-      const item = items.splice(i, 1)[0];
-      items.splice(i + arrow, 0, item);
-      this.save();
-    },
     openDialogItem(index) {
       this.selectedItemIndex = index;
       if (index < 0) {
@@ -222,6 +221,15 @@ export default {
         this.dialogSubItem = false;
         this.loading = false;
       }
+    },
+    moveItem(items, i, arrow) {
+      const item = items.splice(i, 1)[0];
+      items.splice(i + arrow, 0, item);
+      this.save();
+    },
+    removeItem(items, i) {
+      items.splice(i, 1);
+      this.save();
     },
   },
 };

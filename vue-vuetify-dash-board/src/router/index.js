@@ -13,6 +13,10 @@ const router = new VueRouter({
       path: '/aboute',
       component: () => import('@/components/About.vue'),
     },
+    {
+      path: '/board',
+      component: () => import('@/components/board/index'),
+    },
   ],
 });
 
